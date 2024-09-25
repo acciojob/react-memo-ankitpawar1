@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 
 function UseMemoComponent() {
-  const [number, setNumber] = useState(1000000000);
+  const [number, setNumber] = useState(10000000);
 
   const expensiveCalculation = (num) => {
     console.log("Calculating...");
@@ -12,7 +12,7 @@ function UseMemoComponent() {
   const calculation = useMemo(() => expensiveCalculation(number), [number]);
 
   const increment = () => {
-    setNumber(number + 1000000000);
+    setNumber(number + 10000000);
   };
 
   return (
