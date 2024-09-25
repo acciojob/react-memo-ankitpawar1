@@ -1,20 +1,44 @@
 import React, { useState } from "react";
-import Todo from "./Todo.js";
-import AddTodo from "./AddTodo.js";
-import Counter from "./Counter.js";
+import UseMemoComponent from "./UseMemo";
+import ReactMemoComponent from "./ReactMemo";
 
-const App = () => {
-  const [todo, setTodo] = useState([]);
-  const [value, setValue] = useState("");
+function App() {
+  const [todos, setTodos] = useState(["New Todo"]);
+  const [count, setCount] = useState(0);
+
+  const addTodo = () => {
+    setTodos([...todos, "New Todo"]);
+  };
 
   return (
-    <div>
+    <div id="main">
       <h1>React.useMemo</h1>
-      <AddTodo />
-      <Counter />
-      <Todo todo={todo} setTodo={setTodo} value={value} setValue={setValue} />
+
+      <div>
+        <h2>My todos</h2>
+        {todos.map((todo, index) => (
+          <p id={`todo-${index}`} key={index}>
+            {todo}
+          </p>
+        ))}
+        <button id="add-todo-btn" onClick={addTodo}>
+          Add Todo
+        </button>
+      </div>
+
+      <div>
+        <h2>
+          Count: <span id="counter">{count}</span>
+        </h2>
+        <button id="incr-cnt" onClick={() => setCount(count + 1)}>
+          0
+        </button>
+      </div>
+
+      <UseMemoComponent />
+      <ReactMemoComponent />
     </div>
   );
-};
+}
 
 export default App;
